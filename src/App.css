@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 #root {
   /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center; */
+  font-family: 'Roboto', sans-serif;
 }
 
 .logo {
@@ -36,13 +39,20 @@
   }
 }
 
+.cards {
+    display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 .card {
   padding: 2em;
   border: 1px solid goldenrod;
-  border-radius: 1rem;
+  border-radius: 2rem;
   display: inline-flex;
   flex-direction: column;
   background-color: rgba(0, 0, 0, 0.96);
+  color: #ddd;
 }
 
 .read-the-docs {
@@ -68,12 +78,20 @@ canvas {
   display: block;
 }
 
+.starfield {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   left: 0;
   top: 0;
   margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   position: absolute;
 
@@ -84,15 +102,25 @@ canvas {
 
 #app main {
 
-  flex-grow: 1;
+  flex-grow: auto;
+
 
   color: gold;
   padding: 4em 2em 2em 2em;
+  
 }
 
 #app header {
-  height: 64px;
-  background-color: rgba(249, 246, 31, 0.297);
+  display: block;
+
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  
+
+
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.98);
   /* background-color: lime; */
   border-bottom: 1px solid goldenrod;
 }
@@ -102,4 +130,21 @@ canvas {
   background-color: rgba(0, 0, 0, 0.98);
   border-top: 1px solid goldenrod;
   align-items: center;
+}
+
+header .logo {
+  font-size: 4rem;
+  font-weight: 900;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+header .logo img {
+  background-color: white;
+  border-radius: 50%;
+  height: 180px;
+  padding: 4px;
 }

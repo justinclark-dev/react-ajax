@@ -45,7 +45,7 @@ const Starfield = ({ width = 3840, height = 2160 }) => {
       gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
       gradient.addColorStop(0.2, 'rgba(241, 48, 48, 1)');
       gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.6)');
-gradient.addColorStop(0.4, 'rgba(14, 49, 190, 1)');
+      gradient.addColorStop(0.4, 'rgba(14, 49, 190, 1)');
       gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
       
       ctx.beginPath();
@@ -56,7 +56,7 @@ gradient.addColorStop(0.4, 'rgba(14, 49, 190, 1)');
   }, [width, height]);
 
   return (
-    <canvas 
+    <canvas className="starfield"
       ref={canvasRef}
       style={{
         maxWidth: '100%',
