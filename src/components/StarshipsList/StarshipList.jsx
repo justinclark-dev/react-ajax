@@ -1,6 +1,18 @@
-
+import { useEffect } from "react";
 
 const StarshipList = (props) => {
+
+    useEffect(() => {
+      const getData = async () => {
+        let response = await fetch(props.BASE_URL + `starships/`)
+        let JSONdata = await response.json()
+  
+        props.setStarships(JSONdata.results);
+      }
+  
+      getData()
+  
+    }, []);
 
   const calcPrice = (starship) => {
     const name = starship.name;
