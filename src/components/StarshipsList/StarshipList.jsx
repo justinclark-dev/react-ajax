@@ -2,17 +2,26 @@ import { useEffect } from "react";
 
 const StarshipList = (props) => {
 
-    useEffect(() => {
-      const getData = async () => {
-        let response = await fetch(props.BASE_URL + `starships/`)
-        let JSONdata = await response.json()
-  
-        props.setStarships(JSONdata.results);
-      }
-  
-      getData()
-  
-    }, []);
+  useEffect(() => {
+    const getData = async () => {
+      let response = await fetch(props.BASE_URL + `starships/`)
+      let JSONdata = await response.json()
+
+      console.log(JSONdata)
+
+
+      props.setStarships(JSONdata.results);
+
+      props.setNext(JSONdata.next)
+
+    }
+
+
+    getData()
+
+  }, []);
+
+
 
   const calcPrice = (starship) => {
     const name = starship.name;
@@ -43,10 +52,13 @@ const StarshipList = (props) => {
 
   return (
     <>
+
+
       {props.starships.length ? `${props.starships.length} results` : ''}
       <ul className="cards">
         {someList}
       </ul>
+
     </>
   );
 };
