@@ -5,59 +5,57 @@ import useWindowDimensions from './components/useWindowDimensions/useWindowDimen
 import DimensionsDisplay from './components/DimensionsDisplay/DimensionsDisplay';
 import StarshipList from './components/StarshipsList/StarshipList';
 import StarshipSearch from './components/StarshipSearch/StarshipSearch';
-
-
+import NextPreviousButtons from './components/NextPreviousButtons/NextPreviousButton';
 
 function App() {
   const { width, height } = useWindowDimensions();
   const BASE_URL = `https://swapi.dev/api/`;
   const [starships, setStarships] = useState([]);
   const [search, setSearch] = useState('');
-
   const [next, setNext] = useState('');
   const [previous, setPrevious] = useState('');
-
-
-  const goToNext = async () => {
-      let response = await fetch(next)
-      let JSONdata = await response.json()
-
-      setStarships(JSONdata.results);
-
-      JSONdata.next ? setNext(JSONdata.next) : setNext('');
-      JSONdata.previous ? setPrevious(JSONdata.previous) : setPrevious('');
-  }
-
-  const goToPrevious = async () => {
-      let response = await fetch(previous)
-      let JSONdata = await response.json()
-
-      setStarships(JSONdata.results);
-
-      JSONdata.next ? setNext(JSONdata.next) : setNext('');
-      JSONdata.previous ? setPrevious(JSONdata.previous) : setPrevious('');
-  }
+  const [resultsCounts, setResultsCounts] = useState('');
 
   return (
     <>
       <Starfield width={width} height={height} />
       <main id="app">
         <header>
-          <div className='logo'><img src="../public/empire.png" alt="" />Empire Starships</div>
+          <div className='logo'>
+            <img src="../public/empire.png" alt="" />
+            Empire Starships
+          </div>
         </header>
         <main>
 
-          <StarshipSearch BASE_URL={BASE_URL} setStarships={setStarships} />
+          <StarshipSearch
+            BASE_URL={BASE_URL}
+            setStarships={setStarships}
+            setResultsCounts={setResultsCounts}
+            setNext={setNext}
+            setPrevious={setPrevious}
+          />
 
-          {previous ? 
-            <button onClick={() => goToPrevious()}>prev</button> :
-            <button onClick={() => goToPrevious()} disabled >prev</button>
-          }
-          {next ? 
-            <button onClick={() => goToNext()}>next</button> :
-            <button onClick={() => goToNext()} disabled >next</button>
-          }
-          <StarshipList setNext={setNext} BASE_URL={BASE_URL} starships={starships} setStarships={setStarships} />
+          <NextPreviousButtons
+            next={next}
+            previous={previous}
+            starships={starships}
+            setStarships={setStarships}
+            search={search}
+            setSearch={setSearch}
+            setNext={setNext}
+            setPrevious={setPrevious}
+            resultsCounts={resultsCounts}
+            setResultsCounts={setResultsCounts}
+          />
+
+          <StarshipList
+            setNext={setNext}
+            BASE_URL={BASE_URL}
+            starships={starships}
+            setStarships={setStarships}
+            setResultsCounts={setResultsCounts}
+          />
 
         </main>
         <footer>

@@ -19,6 +19,32 @@ const StarshipSearch = (props) => {
 
     // Insert Starship Data into the DOM
     props.setStarships(JSONdata.results);
+
+
+
+
+
+   
+          const totalItems = JSONdata.count;
+      const theseItems = JSONdata.results.length;
+
+      if (totalItems > theseItems) {
+        props.setResultsCounts(`1 - 10 of ${totalItems}`);
+      } else {
+        props.setResultsCounts(`1 - ${totalItems} of ${totalItems}`);
+      }
+ console.log(totalItems)
+
+     JSONdata.next ? props.setNext(JSONdata.next) : props.setNext('');
+    JSONdata.previous ? props.setPrevious(JSONdata.previous) : props.setPrevious('');
+
+
+
+
+
+
+
+    console.log('search results: ', JSONdata)
   }
 
   return (

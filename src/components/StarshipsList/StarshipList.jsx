@@ -2,6 +2,20 @@ import { useEffect } from "react";
 
 const StarshipList = (props) => {
 
+
+  // const getPageFromURL = (urlParam) => {
+  //   // Create a URL object
+  //   const url = new URL(urlParam);
+
+  //   // Create a URLSearchParams object
+  //   const params = new URLSearchParams(url.search);
+
+  //   // Get individual parameters
+  //   return params.get('page');
+
+  // };
+
+
   useEffect(() => {
     const getData = async () => {
       let response = await fetch(props.BASE_URL + `starships/`)
@@ -13,6 +27,15 @@ const StarshipList = (props) => {
       props.setStarships(JSONdata.results);
 
       props.setNext(JSONdata.next)
+
+      const totalItems = JSONdata.count;
+      const theseItems = JSONdata.results.length;
+
+      if (totalItems > theseItems) {
+        props.setResultsCounts(`1 - 10 of ${totalItems}`);
+      }
+
+
 
     }
 
@@ -54,7 +77,7 @@ const StarshipList = (props) => {
     <>
 
 
-      {props.starships.length ? `${props.starships.length} results` : ''}
+      {/* {props.starships.length ? `${props.starships.length} results` : ''} */}
       <ul className="cards">
         {someList}
       </ul>
