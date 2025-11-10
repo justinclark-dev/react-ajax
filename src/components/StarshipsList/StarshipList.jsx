@@ -34,7 +34,6 @@ const StarshipList = (props) => {
       return (<li key={index} className="card">
         <h2>{starship.name}</h2>
         <p><b>Price:</b> ${calcPrice(starship)}</p>
-        <p><b>Class:</b> {starship.starship_class}</p>
         <p><b>Starship Class:</b> {starship.starship_class}</p>
         <p><b>Model:</b> {starship.model}</p>
         <p><b>Manufacturer:</b> {starship.manufacturer}</p>
