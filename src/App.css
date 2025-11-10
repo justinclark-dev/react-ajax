@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 #root {
-  /* max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center; */
   font-family: 'Roboto', sans-serif;
 }
 
@@ -94,42 +90,40 @@ canvas {
   min-height: 100vh;
   width: 100vw;
   position: absolute;
-
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
 #app main {
-
-  flex-grow: auto;
-
-
+  flex-grow: 1;
   color: gold;
   padding: 4em 2em 2em 2em;
-  
 }
 
 #app header {
   display: block;
-
   display: flex;
   flex-direction: row;
   align-content: center;
-  
-
-
   height: 200px;
   background-color: rgba(0, 0, 0, 0.98);
-  /* background-color: lime; */
-  border-bottom: 1px solid goldenrod;
+  border-bottom: 1px solid red;
 }
 
 #app footer {
   height: 200px;
   background-color: rgba(0, 0, 0, 0.98);
-  border-top: 1px solid goldenrod;
-  align-items: center;
+  border-top: 1px solid red;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+}
+
+#app footer .dimensionsDisplay {
+  color: #111;
 }
 
 header .logo {
@@ -142,9 +136,49 @@ header .logo {
   align-items: center;
   color: #fff;
 }
+
 header .logo img {
   background-color: white;
   border-radius: 50%;
   height: 180px;
   padding: 4px;
+}
+
+.nextPreviousButtons  {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.nextPreviousButtons button {
+  font-size: larger;
+  font-weight: 900;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button:disabled:hover {
+  border-color: #1a1a1a;
+}
+
+input[type=submit],
+input[type=text] {
+  box-sizing: border-box;
+  height: 50px;
+  border-radius: 25px;
+  padding: 0 25px;
+}
+input[type=text] {
+  color: #888;
+  min-width: 600px
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }

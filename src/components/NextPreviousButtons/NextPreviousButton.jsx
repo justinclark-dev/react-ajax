@@ -1,26 +1,12 @@
-/*
-
-            search={search}
-            setSearch={setSearch}
-   
-            setNext={setNext}
-            setPrevious={setPrevious}
-
-
-*/
 const NextPreviousButtons = (props) => {
   const { 
     next, 
     previous, 
-    starships, 
     setStarships, 
-    search, 
-    setSearch, 
     setNext, 
     setPrevious, 
     resultsCounts, 
     setResultsCounts 
-
   } = props;
 
   const getPageFromURL = (urlParam) => {
@@ -32,7 +18,6 @@ const NextPreviousButtons = (props) => {
 
     // Get individual parameters
     return params.get('page');
-
   };
 
   const goToPage = async (direction) => {
@@ -46,64 +31,36 @@ const NextPreviousButtons = (props) => {
 
     setStarships(JSONdata.results);
 
-    // console.log(36 % 10)
-
     const totalItems = JSONdata.count;
-    
-    // console.log(next);
-    // console.log(previous);
-
     const nextPage = next ? getPageFromURL(next) : '';
     const previousPage = previous ? getPageFromURL(previous) : '';
 
     if (direction === 'next') {
       const lastItem = nextPage * 10 >= totalItems ? totalItems : `${nextPage}0`
-      if (!previousPage && nextPage) {
-        console.log('First page')
-        console.log('11 - 20')
-        setResultsCounts(`${nextPage - 1}1 - ${lastItem} of ${totalItems}`)
-      } else {
-        setResultsCounts(`${nextPage - 1}1 - ${lastItem} of ${totalItems}`)
-      }
+      setResultsCounts(`${nextPage - 1}1 - ${lastItem} of ${totalItems}`)
     }
 
     if (direction === 'previous') {
       const firstItem = previousPage - 1 === 0 ? 1 : `${previousPage - 1}1`
-      if (!previousPage && nextPage) {
-        // console.log('First page')
-        console.log('1-10')
-      } else {
-        setResultsCounts(`${firstItem} - ${previousPage}0 of ${totalItems}`)
-      }
+      setResultsCounts(`${firstItem} - ${previousPage}0 of ${totalItems}`)
     }
-
-
-
-    // console.log(`next page: ${nextPage}`)
-    // console.log(`previous page: ${previousPage}`)
-
-    // console.log(JSONdata.count)
-    // console.log(JSONdata);
 
     JSONdata.next ? setNext(JSONdata.next) : setNext('');
     JSONdata.previous ? setPrevious(JSONdata.previous) : setPrevious('');
   };
 
-
   return (
-    <>
+    <div className='nextPreviousButtons'>
       {previous ?
-        <button onClick={() => goToPage('previous')}>&#x1F82C;</button> :
-        <button onClick={() => goToPage('previous')} disabled >&#x1F82C;</button>
+        <button onClick={() => goToPage('previous')}>&lt;</button> :
+        <button onClick={() => goToPage('previous')} disabled >&lt;</button>
       }
-
       &nbsp;&nbsp;{ resultsCounts }&nbsp;&nbsp;
-
       {next ?
-        <button onClick={() => goToPage('next')}>&#x279E;</button> :
-        <button onClick={() => goToPage('next')} disabled >&#x279E;</button>
+        <button onClick={() => goToPage('next')}>&gt;</button> :
+        <button onClick={() => goToPage('next')} disabled >&gt;</button>
       }
-    </>
+    </div>
   )
 };
 

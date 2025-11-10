@@ -11,7 +11,6 @@ function App() {
   const { width, height } = useWindowDimensions();
   const BASE_URL = `https://swapi.dev/api/`;
   const [starships, setStarships] = useState([]);
-  const [search, setSearch] = useState('');
   const [next, setNext] = useState('');
   const [previous, setPrevious] = useState('');
   const [resultsCounts, setResultsCounts] = useState('');
@@ -19,10 +18,12 @@ function App() {
   return (
     <>
       <Starfield width={width} height={height} />
+
       <main id="app">
         <header>
           <div className='logo'>
             <img src="../public/empire.png" alt="" />
+            &nbsp;
             Empire Starships
           </div>
         </header>
@@ -39,10 +40,7 @@ function App() {
           <NextPreviousButtons
             next={next}
             previous={previous}
-            starships={starships}
             setStarships={setStarships}
-            search={search}
-            setSearch={setSearch}
             setNext={setNext}
             setPrevious={setPrevious}
             resultsCounts={resultsCounts}
@@ -59,8 +57,8 @@ function App() {
 
         </main>
         <footer>
-          <DimensionsDisplay width={width} height={height} />
           &copy; 3 BBY | Galactic Empire
+          <DimensionsDisplay width={width} height={height} />
         </footer>
 
       </main>

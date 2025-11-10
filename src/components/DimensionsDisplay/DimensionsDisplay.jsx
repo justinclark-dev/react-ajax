@@ -2,7 +2,7 @@ const DimensionsDisplay = (props) => {
 
   const {width, height} = props;
   return (
-    <p>Screen width: {width}px, Screen height: {height}px</p>
+    <div className='dimensionsDisplay'>Screen width: {width}px, Screen height: {height}px</div>
   );
 
 };
